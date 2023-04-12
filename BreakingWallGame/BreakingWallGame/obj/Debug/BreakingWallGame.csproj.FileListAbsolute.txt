@@ -1,0 +1,10 @@
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.exe.config
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.exe
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.pdb
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csprojAssemblyReference.cache
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.Form1.resources
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.Properties.Resources.resources
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.GenerateResource.cache
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.CoreCompileInputs.cache
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.exe
+C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.pdb
