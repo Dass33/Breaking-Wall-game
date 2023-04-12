@@ -8,3 +8,14 @@ C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\B
 C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.CoreCompileInputs.cache
 C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.exe
 C:\Users\dvorakdaniel\source\repos\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.pdb
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.exe.config
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.exe
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\bin\Debug\BreakingWallGame.pdb
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.AssemblyReference.cache
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.SuggestedBindingRedirects.cache
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.Form1.resources
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.Properties.Resources.resources
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.GenerateResource.cache
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.csproj.CoreCompileInputs.cache
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.exe
+C:\Users\ddant\source\repos\BW\Breaking-Wall-game\BreakingWallGame\BreakingWallGame\obj\Debug\BreakingWallGame.pdb
