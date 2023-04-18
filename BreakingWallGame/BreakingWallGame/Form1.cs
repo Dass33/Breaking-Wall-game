@@ -38,13 +38,18 @@ namespace BreakingWallGame
         int mintPocetBloku, mintMezeraStrany;
         int mintXBloku = 0, mintYBloku = 0;
 
-        const int mintXmezeraBloku = 105; 
+        const int mintXmezeraBloku = 115; 
         const int mintYmezeraBloku = 50;
         const int mintPocetRadBloku = 4;
         const int mintWidthBloku = 90;
         const int mintHeightBloku = 30;
 
         int[] marrZnicenebloky;
+        int mintPoradiRady = 0;
+        //end screen 
+        const int mintMezeraElemntu = 80;
+        //skore
+        int mintSkore = 0;
 
         //konstanty => nemeni se v prubehu programu
         const int mintRychlostPosunu = 7;
@@ -57,8 +62,27 @@ namespace BreakingWallGame
             tmrRedraw.Interval = tmrRedrawSpeed;
             tmrRedraw.Start();
         }
-        
-        private void pbplatno_Click(object sender, EventArgs e)
+
+        //funkce pro restart hry
+        private void btStartOver_Click(object sender, EventArgs e)
+        {
+            mintSkore = 0;
+            mintPoradiRady = 0;
+
+            btStartOver.Enabled = false;
+            btStartOver.Visible = false;
+
+            lbGameOver.Enabled = false;
+            lbGameOver.Visible = false;
+
+            InitPromenych();
+            tmrRedraw.Start();
+
+            //puts focus back on the form and keeps my sanity, delete at your own discretion
+            this.Focus();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
@@ -102,10 +126,17 @@ namespace BreakingWallGame
             mintPocetBloku = pbplatno.Width / mintXmezeraBloku;
             //urceni delky array, tak aby v ni bylo misto pro vsechny bloky
             //vymeneni defaultni nuly za -1, aby hra nezacala s chybejcim prvnim dilkem
-            marrZnicenebloky = Enumerable.Repeat(-1, mintPocetRadBloku * mintPocetBloku).ToArray();
+            marrZnicenebloky = Enumerable.Repeat(-1, mintPocetRadBloku * (int)mintPocetBloku).ToArray();
             // zjisti zbztek deleni sirky pbplatno velikosti mezer bloku (cihel)
             //pricte velikost rozdilu jedne mezery a velikosti bloku ten nasledne rozdeli na dva dili => mezery od okarju
-            mintMezeraStrany = ((pbplatno.Width % mintXmezeraBloku) / 2) + (mintXmezeraBloku - mintWidthBloku) / 2;
+            mintMezeraStrany = (pbplatno.Width % mintXmezeraBloku / 2) + (mintXmezeraBloku - mintWidthBloku) / 2;
+
+            //skore
+            lbScore.Enabled = true;
+            lbScore.ForeColor = Color.Black;
+            lbScore.Font = new Font("Arial", 30, FontStyle.Bold);
+            lbScore.Text = "Skore: 0";
+            lbScore.Location = new Point(pbplatno.Width / 2 - lbScore.Width /2, pbplatno.Height);
         }
 
         //kontroluje jestli kulicka prave nenarazi do nektereho z objektu (Zed), nebo hrace
@@ -130,6 +161,12 @@ namespace BreakingWallGame
                 {
                     mintPohybX = mintPohybX + (mintPohybXPlayer / mintMomentumOdrazuPlayer);
                     mintPohybY = mintPohybY + 1 / mintMomentumOdrazuPlayer * mintMomentumOdrazuPlayer;
+                }
+                else if (mintY != mintYPlayer)
+                {
+                    //zvyseni skore
+                    mintSkore++;
+                    lbScore.Text = "Skore: " + mintSkore;
                 }
             }
             else boolKulickaOdrazena = false;
@@ -169,26 +206,25 @@ namespace BreakingWallGame
 
                     if (boolKulickaOdrazena)
                     {
-                        //ulozeni souradnic jednotlivizch ynicenzch bloku
+                        //ulozeni souradnic jednotlivizch znicenzch bloku
                         //a udave x souradnici a i * mintPocetBloku udava y souradnici
-                        marrZnicenebloky = marrZnicenebloky.Append(a + i * mintPocetBloku).ToArray();
+                        marrZnicenebloky[mintPoradiRady] = a + i * mintPocetBloku;
+                        mintPoradiRady++;
                     }
                 }            
             }
             mintXBloku = mintYBloku = 0;
         
-            //vykresleni kulicky
-            mobjGrafika.FillEllipse(Brushes.Red, mintXKulicky, mintYKulicky, mintRadiusKulicky, mintRadiusKulicky);
             //posun kulicky
             mintXKulicky += mintPohybX;
             mintYKulicky += mintPohybY;
+            //vykresleni kulicky
+            mobjGrafika.FillEllipse(Brushes.Red, mintXKulicky, mintYKulicky, mintRadiusKulicky, mintRadiusKulicky);
 
             //detekce jestli kulicka narazi na hrace
            
             DetekceNarazuKulicky(mintXPlayer, mintYPlayer, mintWidthPlayer, mintHeightPlayer);
                 
-            
-
             //pokud kulicka narazi do steny, stropu nebo hrace odrazi se opacnym smerem => *(-1)
             if (mintYKulicky < 0) //odrzeni od spodni hrany: || (mintYKulicky + mintRadiusKulicky) > pbplatno.Height
             {
@@ -215,10 +251,31 @@ namespace BreakingWallGame
 
             //konec hry
             if (mintYKulicky > pbplatno.Height)
-            {
-                
-                InitPromenych();
+            {                
+                tmrRedraw.Stop();
+
+                //tlacitko pro restart hry
+                btStartOver.BackColor = Color.DarkBlue;
+                btStartOver.Enabled = true;
+                btStartOver.Text = "Start Again";
+                btStartOver.ForeColor = Color.WhiteSmoke;
+                btStartOver.Font = new Font("Arial", 30, FontStyle.Bold);
+                btStartOver.Width = (int)(pbplatno.Width /2.5f);
+                btStartOver.Height = pbplatno.Height /7;
+                btStartOver.Location = new Point(pbplatno.Width / 2 - btStartOver.Width / 2, pbplatno.Height / 2 - btStartOver.Height / 2 + mintMezeraElemntu);
+                btStartOver.Visible = true;
+
+                //Game over text
+                lbGameOver.Location = new Point(pbplatno.Width /2 - lbGameOver.Width /2, pbplatno.Height /2 - lbGameOver.Height /2 - mintMezeraElemntu);
+                lbGameOver.Visible = true;
             }
+            if (!Array.Exists(marrZnicenebloky, element => element == -1))
+            {
+                //Game over text
+                lbGameOver.Text = "You Won!!";
+                lbGameOver.Location = new Point(pbplatno.Width / 2 - lbGameOver.Width / 2, pbplatno.Height / 2 - lbGameOver.Height / 2 - mintMezeraElemntu);
+                lbGameOver.Visible = true;
+            }    
         }
     }
 }
