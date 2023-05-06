@@ -39,7 +39,7 @@ namespace BreakingWallGame
         int mintXBloku = 0, mintYBloku = 0;
 
         const int mintXmezeraBloku = 115; 
-        const int mintYmezeraBloku = 50;
+        const int mintYmezeraBloku = 55;
         const int mintPocetRadBloku = 4;
         const int mintWidthBloku = 90;
         const int mintHeightBloku = 30;
@@ -80,11 +80,6 @@ namespace BreakingWallGame
 
             //puts focus back on the form and keeps my sanity, delete at your own discretion
             this.Focus();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -143,7 +138,7 @@ namespace BreakingWallGame
         public void DetekceNarazuKulicky(int mintX, int mintY, int mintWidthObject, int mintHeightObject)
         {
             if ((mintYKulicky + mintRadiusKulicky >= mintY) &&
-                (mintYKulicky + mintRadiusKulicky <= mintY + mintMarginOfError) &&
+                (mintYKulicky + mintRadiusKulicky <= mintY + mintHeightBloku *2) &&
                 (mintXKulicky + mintRadiusKulicky >= mintX) && 
                 (mintXKulicky <= mintX + mintWidthObject))
             {
@@ -154,13 +149,17 @@ namespace BreakingWallGame
                 //pokud odrzeno hracem ziska kulicka cast momenta hrace
                 if (mintY == mintYPlayer && boolMoveLeftPlayer)
                 {
-                    mintPohybX= mintPohybX + (mintPohybXPlayer / mintMomentumOdrazuPlayer) * (-1);
+                    mintYKulicky = mintYPlayer - mintRadiusKulicky;
                     mintPohybY = mintPohybY + 1/ mintMomentumOdrazuPlayer * mintMomentumOdrazuPlayer;
+
+                    mintPohybX = mintPohybX + (mintPohybXPlayer / mintMomentumOdrazuPlayer) * (-1);
                 }
                 else if (mintY == mintYPlayer && boolMoveLeftPlayer == false)
                 {
-                    mintPohybX = mintPohybX + (mintPohybXPlayer / mintMomentumOdrazuPlayer);
+                    mintYKulicky = mintYPlayer - mintRadiusKulicky;
                     mintPohybY = mintPohybY + 1 / mintMomentumOdrazuPlayer * mintMomentumOdrazuPlayer;
+
+                    mintPohybX = mintPohybX + (mintPohybXPlayer / mintMomentumOdrazuPlayer);
                 }
                 else if (mintY != mintYPlayer)
                 {
@@ -202,7 +201,7 @@ namespace BreakingWallGame
                 {
                     mobjGrafika.FillRectangle(Brushes.DarkBlue, mintXBloku, mintYBloku, mintWidthBloku, mintHeightBloku);
                     //pri detekovani narazu kulicky zvisujeme hodnotu Y tak aby hitbox odpovida stredu bloku
-                    DetekceNarazuKulicky(mintXBloku, mintYBloku + mintHeightBloku, mintWidthBloku, mintHeightBloku);
+                    DetekceNarazuKulicky(mintXBloku, mintYBloku, mintWidthBloku, mintHeightBloku);
 
                     if (boolKulickaOdrazena)
                     {

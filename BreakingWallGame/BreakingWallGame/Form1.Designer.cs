@@ -110,7 +110,6 @@
             this.lbScore.Size = new System.Drawing.Size(33, 13);
             this.lbScore.TabIndex = 4;
             this.lbScore.Text = "score";
-            this.lbScore.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
